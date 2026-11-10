@@ -1,0 +1,98 @@
+{
+  "source": "files",
+  "warehouse": "file",
+  "seed": 42,
+  "arrivals": 49402,
+  "by_kind": {
+    "ok": 45471,
+    "duplicate": 1402,
+    "invalid": 244,
+    "late_minor": 1840,
+    "late_major": 445
+  },
+  "unique_valid_events": 47756,
+  "ingest": {
+    "sent": 49158,
+    "dead_lettered": 244,
+    "seconds": 1.61,
+    "events_per_sec": 30680
+  },
+  "streaming": {
+    "seconds": 71.28,
+    "input_rows": 49158,
+    "micro_batches": 99,
+    "events_per_sec": 690
+  },
+  "silver": {
+    "rows": 47756,
+    "missing_vs_truth": 0,
+    "unexpected_vs_truth": 0,
+    "duplicates_in_input": 1402,
+    "duplicates_removed": 1402,
+    "v2_rows_with_battery_temp": 23890,
+    "v2_rows_expected": 23890
+  },
+  "vehicle_state": {
+    "vehicles": 100,
+    "wrong_latest": 0
+  },
+  "gold_stream": {
+    "windows_emitted": 4500,
+    "windows_still_open": 300,
+    "events_in_emitted_windows": 44762,
+    "events_dropped_as_late": 422,
+    "late_major_in_emitted_windows": 422,
+    "dropped_not_explained_by_late_major": 0,
+    "overcounted_windows": 0
+  },
+  "gold_daily": {
+    "seconds": 0.43,
+    "rows": 200,
+    "pings": 47756,
+    "mismatched_rows_vs_truth": 0
+  },
+  "dq_checks": {
+    "silver_duplicate_event_ids": 0,
+    "silver_null_required": 0,
+    "silver_speed_out_of_range": 0,
+    "vehicle_state_not_latest": 0,
+    "gold_daily_unreconciled_pings": 0,
+    "gold_5min_overcounted_windows": 0
+  },
+  "time_travel": {
+    "silver_snapshots": 99,
+    "first_snapshot_rows": 490,
+    "current_rows": 47756
+  },
+  "compaction": [
+    {
+      "table": "silver.telemetry",
+      "files_before": 114,
+      "files_after": 2,
+      "rewritten": 114,
+      "added": 2,
+      "seconds": 0.9
+    },
+    {
+      "table": "gold.vehicle_5min",
+      "files_before": 45,
+      "files_after": 2,
+      "rewritten": 45,
+      "added": 2,
+      "seconds": 0.33
+    },
+    {
+      "table": "bronze.telemetry_raw",
+      "files_before": 99,
+      "files_after": 1,
+      "rewritten": 99,
+      "added": 1,
+      "seconds": 0.68
+    }
+  ],
+  "expiry": {
+    "table": "silver.telemetry",
+    "deleted_data_files": 114,
+    "snapshots_left": 1
+  }
+}
