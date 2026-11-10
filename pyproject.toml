@@ -1,0 +1,36 @@
+[project]
+name = "streamhouse"
+version = "0.1.0"
+description = "Streaming lakehouse: Kafka -> Spark Structured Streaming -> Apache Iceberg (bronze/silver/gold) on S3, maintained by Airflow, provisioned with Terraform."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "pyspark==3.5.9",
+    "confluent-kafka>=2.6",
+    "jsonschema>=4.23",
+]
+
+[project.scripts]
+streamhouse = "streamhouse.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6", "moto[server]>=5.0"]
+airflow = ["apache-airflow>=3.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "C4"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["streamhouse", "conftest"]
