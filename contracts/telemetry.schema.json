@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/streamhouse/contracts/telemetry.schema.json",
+  "title": "VehicleTelemetry",
+  "description": "One GPS/CAN ping from a fleet vehicle. Topic key = vehicle_id. Fields with x-added-in > 1 are optional, nullable additions (backward compatible).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "schema_version", "vehicle_id", "event_ts", "lat", "lon", "speed_kmh", "odometer_km"],
+  "properties": {
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "schema_version": {"type": "integer", "enum": [1, 2]},
+    "vehicle_id": {"type": "string", "pattern": "^veh-[0-9]{4}$"},
+    "event_ts": {"type": "string", "format": "date-time", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,6})?Z$"},
+    "lat": {"type": "number", "minimum": -90, "maximum": 90},
+    "lon": {"type": "number", "minimum": -180, "maximum": 180},
+    "speed_kmh": {"type": "number", "minimum": 0, "maximum": 250},
+    "odometer_km": {"type": "number", "minimum": 0},
+    "battery_temp_c": {"type": ["number", "null"], "minimum": -40, "maximum": 90, "x-added-in": 2}
+  }
+}
