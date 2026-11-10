@@ -1,0 +1,4 @@
+region             = "eu-west-1"
+environment        = "dev"
+subnet_ids         = ["subnet-aaaa1111", "subnet-bbbb2222"]
+security_group_ids = ["sg-cccc3333"]
